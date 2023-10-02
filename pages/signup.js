@@ -1,10 +1,15 @@
 import { useRouter } from "next/router";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 function SignUp() {
     const router = useRouter()
     const [email,setEmail]=useState("")
     const [password,setPassword]=useState("")
+    useEffect(()=>{
+        fetch("/api/user").then(res=>res.json()).then((data)=>{
+            if(data.status==="success")window.location.href ="/" //or router.replace("/dashboard")
+        })
+        },[])
     const signUpHandler=async()=>{
         const res =await fetch("/api/auth/signup",{
             method:"POST",

@@ -1,8 +1,14 @@
 import { useRouter } from "next/router"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 
 function SignIn() {
     const router = useRouter()
+
+    useEffect(()=>{
+    fetch("/api/user").then(res=>res.json()).then((data)=>{
+        if(data.status==="success")window.location.href ="/dashboard" //or router.replace("/dashboard")
+    })
+    },[])
     const [email,setEmail]=useState("")
     const [password,setPassword]=useState("")
     const signInHandler=async()=>{
@@ -12,7 +18,7 @@ function SignIn() {
             headers:{"Content-Type":"application/json"}
         })
         const data =await res.json()
-     if(data.status==="success")router.push("/dashboard")
+     if(data.status==="success")router.push("/")
 
     }
     

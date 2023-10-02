@@ -9,11 +9,18 @@ const userSchema = new Schema({
     type: String,
     required: true,
   },
+  name: {
+    type: String,
+  },
+  lastName: {
+    type: String,
+  },
+  phone: Number,
   createdAt: {
     type: Date,
     default: () => Date.now(),
-    immutable:true
+    immutable: true,
   },
 });
-const User = models.User || model("User",userSchema)
-export default User
+const User = models.User || model("User", userSchema);
+export default User;
