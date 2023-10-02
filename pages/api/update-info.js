@@ -39,7 +39,7 @@ async function handler(req, res) {
       .json({ status: "failed", message: " password is incorrect" });
   }
   user.name = name;
-  user.lastNmae = lastName;
+  user.lastName = lastName;
   user.phone = phone;
   user.save();
   res
